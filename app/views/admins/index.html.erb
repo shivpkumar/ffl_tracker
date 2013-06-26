@@ -1,0 +1,18 @@
+<p>This is the master dashboard</p>
+
+<table id="master-admins-table" border="1">
+  <tr id="admins-table-header">
+    <td>ID</td>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Email</td>
+  </tr>
+<% @admins.each do |admin| %>
+  <tr class="admin-row">
+    <td><%= link_to admin.id, admin_path(admin) %></td>
+    <td><%= admin.first_name %></td>
+    <td><%= admin.last_name %></td>
+    <td><%= mail_to admin.email %></td>
+  </tr>
+<% end %>
+</table>

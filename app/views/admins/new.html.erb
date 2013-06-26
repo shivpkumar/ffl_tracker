@@ -1,0 +1,11 @@
+<p>Become an admin!</p>
+
+<div class="messages">
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <p class="errors"><%= error %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'form' %>
