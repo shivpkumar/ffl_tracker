@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  
   def index
     @admins = Admin.all
     # only visible to master admin (ME!)
@@ -38,10 +39,18 @@ class AdminsController < ApplicationController
   end
 
   def update
-    # put route to update admin settings
+    @admin = Admin.find(session[:admin_id])
+    @admin.assign_attributes(params[:admin])
+    if @admin.save
+      redirect_to admin_path(@admin)
+    else
+      flash.now[:errors] = @admin.remove_sensitive_error_messages
+      render :edit
+    end
   end
 
   def destroy
-    # destroy route to delete admin
+    @admin = Admin.find(params[:id])
+    @admin.destroy
   end
 end

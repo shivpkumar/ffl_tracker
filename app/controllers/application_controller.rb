@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def create_session(user)
-    session[:user_id] = user.id
+  def create_session(admin)
+    session[:admin_id] = admin.id
   end
 
   def current_user
-    if session[:user_id]
-      @current_user = User.find(session[:user_id])
+    if session[:admin_id]
+      @current_user = Admin.find(session[:admin_id])
     end
   end
 

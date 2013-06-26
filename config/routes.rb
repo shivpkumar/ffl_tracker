@@ -2,6 +2,10 @@ FflTracker::Application.routes.draw do
   
   resources :admins
 
+  resources :sessions, only: [:new, :create, :destroy]
+  match 'login' => 'sessions#new', :as => :login
+  match 'exit' => 'sessions#destroy', :as => :logout
+
   root to: 'home#index'
 
   # The priority is based upon order of creation:

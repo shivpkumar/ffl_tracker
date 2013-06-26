@@ -8,7 +8,21 @@
 </head>
 <body>
 
+<% if current_user %>
+	<%= link_to "Logout", logout_path %>
+<% else %>
+	<%= link_to "Login", login_path %>
+<% end %>
+
 <%= yield %>
+
+<div class="messages">
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <p class="errors"><%= error %></p>
+    <% end %>
+  <% end %>
+</div>
 
 </body>
 </html>
